@@ -1,0 +1,36 @@
+<html>
+	<head></head>
+	<body>
+
+		<h1>onigiritter</h1>
+
+		<p style="font-size:150%">
+			CREATE_ACCOUNT
+		</p>
+
+		<%= form_for(@user) do |f| %>
+		<div class="field">
+			<%= f.label :user_name %>
+			<br>
+			<%= f.text_field :user_name %>
+		</div>
+		<div class="field">
+			<%= f.label :user_password %>
+			<br>
+			<%= f.password_field :user_password %>
+		</div>
+		<div class="field">
+			<%= f.label :again_password %>
+			<br>
+			<%= f.password_field :again_password %>
+		</div>
+		<div class="actions">
+			<%= f.submit %>
+		</div>
+		<% end %>
+
+		<%= link_to 'home' , '/home/index.html'%>
+
+	</body>
+
+</html>

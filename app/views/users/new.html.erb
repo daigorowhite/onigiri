@@ -3,6 +3,13 @@
 	<body>
 
 		<h1>onigiritter</h1>
+		
+		
+		<% if @info != nil %> 
+		<p style="color:red;">
+			<%= @info %>
+		</p>
+		<% end%>
 
 		<p style="font-size:150%">
 			CREATE_ACCOUNT
@@ -20,9 +27,9 @@
 			<%= f.password_field :user_password %>
 		</div>
 		<div class="field">
-			<%= f.label :again_password %>
+			<%= label :again_password, "Again password" %>
 			<br>
-			<%= f.password_field :again_password %>
+			<%= password_field :res, :again_password %>
 		</div>
 		<div class="actions">
 			<%= f.submit %>

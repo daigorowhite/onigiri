@@ -1,29 +1,30 @@
 <html>
 	<head></head>
 	<body>
-
 		<h1>onigiritter</h1>
-
+		<% if @info != nil %>
+		<p style="color:red; ">
+			<%= @info %>
+		</p>
+		<% end%>
 		<p style="font-size:150%">
 			LOGIN
 		</p>
-		<form method="post" class="login">
-			<table>
-				<tr>
-					<td>user_name</td>
-					<td>
-					<input type="text" name="user_name" value="">
-					</td>
-				</tr>
-
-				<tr>
-					<td>password</td>
-					<td>
-					<input type="password" name="password" value="">
-					</td>
-				</tr>
-			</table>
-		</form>
+		<%= form_tag({:controller => 'home' , :action => 'login' }) do %>
+		<div class="field">
+			<%= label :user_name , "user name"%>
+			<br>
+			<%= text_field :user , :name%>
+		</div>
+		<div class="field">
+			<%= label :user_password, "password" %>
+			<br>
+			<%= password_field :user, :password %>
+		</div>
+		<div class="actions">
+			<%= submit_tag "Login" %>
+		</div>
+		<% end %>
 
 		<%= link_to 'create new account' , new_user_path %>
 		<br>
@@ -34,7 +35,5 @@
 			</tr>
 			<% end %>
 		</table>
-
 	</body>
-
 </html>

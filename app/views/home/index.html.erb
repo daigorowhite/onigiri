@@ -3,13 +3,20 @@
 	<body>
 		<h1>onigiritter</h1>
 		<% if @info != nil %>
-		<p style="color:red; ">
+		<p clsss="info" >
 			<%= @info %>
 		</p>
 		<% end%>
-		<p style="font-size:150%">
+		
+		
+		<p class="title">
+			<% if @logined_user != nil %>
+			user:<%= @logined_user %>  <%= link_to('LOGOUT' , { :controller => "home" , :action => "logout"}, { :class => "logout"}) %>
+			<% else%>
 			LOGIN
+			<% end%>
 		</p>
+
 		<%= form_tag({:controller => 'home' , :action => 'login' }) do %>
 		<div class="field">
 			<%= label :user_name , "user name"%>
@@ -29,9 +36,9 @@
 		<%= link_to 'create new account' , new_user_path %>
 		<br>
 		<table>
-			<% @users.each do |user|%>
+			<% @comment.each do |comment|%>
 			<tr>
-				<td> User Name :: <%= user.user_name%> </td>
+				<td> User Name :: <%= comment.contents%> </td>
 			</tr>
 			<% end %>
 		</table>

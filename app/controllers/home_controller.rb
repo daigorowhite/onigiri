@@ -1,29 +1,35 @@
 class HomeController < ApplicationController
   def index
-    @users= User.all
+    @comment= Comment.all
+    @logined_user = session[:user]
   end
 
   def login
-    
+    @comment= Comment.all
+
     User.all.each do |tmp|
       @login_user = tmp if tmp[:user_name] == params[:user][:name]
-     end
-     
+    end
+
     if @login_user == nil
       p "failed no user"
-      @users= User.all
       @info = "fail"
       render :action => "index.html"
     elsif @login_user[:user_password] == Digest::SHA1.hexdigest(params[:user][:password])
-      p "success"
-      @users= User.all
-      @info = "success"
-      render :action => "index.html" #TODO this render is needed to be changed to link to logined page
+      session[:user] = @login_user[:user_name]
+      @logined_user = session[:user]
+      @info = "hello " + @login_user[:user_name]
+      render :action => "index.html"
     else
-      p "failed"
-      @users= User.all
       @info = "fail"
       render :action => "index.html"
     end
+  end
+
+  def logout
+    @comment= Comment.all
+    session[:user] = nil
+    @logined_user = nil
+    render :action => "index.html"
   end
 end

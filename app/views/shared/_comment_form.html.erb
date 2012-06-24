@@ -1,0 +1,12 @@
+<%= form_tag({:action => 'add_comment'}) do %>
+
+<div class="field">
+	<%= label :req ,:comment %> :
+	<%= text_field :req, :comment,{:size => 50} %>
+</div>
+
+<div class="actions">
+	<%= submit_tag 'send' %>
+</div>
+
+<% end %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    @comments= Comment.all
     @res = {}
 
     respond_to do |format|
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @tmp_user.user_password = Digest::SHA1.hexdigest(params[:user][:user_password])
       if @tmp_user.save
         @info = "success to create account"
-        @users = User.all
+        @comments= Comment.all
         render :action => "../home/index.html"
       else
         @info = "failed to create account"

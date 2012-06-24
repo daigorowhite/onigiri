@@ -3,42 +3,31 @@
 	<body>
 		<h1>onigiritter</h1>
 		<% if @info != nil %>
-		<p clsss="info" >
+		<p clsss="info">
 			<%= @info %>
 		</p>
 		<% end%>
-		
-		
+
 		<p class="title">
 			<% if @logined_user != nil %>
 			user:<%= @logined_user %>  <%= link_to('LOGOUT' , { :controller => "home" , :action => "logout"}, { :class => "logout"}) %>
+
+			<p class="form">
+				<%= render 'shared/comment_form'%>
+			</p>
+	
 			<% else%>
 			LOGIN
-			<% end%>
+			<p class="form">
+				<%= render 'shared/login_form'%>
+			</p>
+		<% end%>
 		</p>
 
-		<%= form_tag({:controller => 'home' , :action => 'login' }) do %>
-		<div class="field">
-			<%= label :user_name , "user name"%>
-			<br>
-			<%= text_field :user , :name%>
-		</div>
-		<div class="field">
-			<%= label :user_password, "password" %>
-			<br>
-			<%= password_field :user, :password %>
-		</div>
-		<div class="actions">
-			<%= submit_tag "Login" %>
-		</div>
-		<% end %>
-
-		<%= link_to 'create new account' , new_user_path %>
-		<br>
 		<table>
-			<% @comment.each do |comment|%>
+			<% @comments.each do |comment|%>
 			<tr>
-				<td> User Name :: <%= comment.contents%> </td>
+				<td> comment :: <%= comment.contents %> </td>
 			</tr>
 			<% end %>
 		</table>

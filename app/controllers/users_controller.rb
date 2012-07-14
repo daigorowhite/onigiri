@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @comments= Comment.all
+    @user = User.new
     @res = {}
 
     respond_to do |format|

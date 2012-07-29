@@ -12,24 +12,21 @@
 			<% if @logined_user != nil %>
 			user:<%= @logined_user %>  <%= link_to('LOGOUT' , { :controller => "home" , :action => "logout"}, { :class => "logout"}) %>
 
-			<p class="form">
-				<%= render 'shared/comment_form'%>
-			</p>
-	
-			<% else%>
-			LOGIN
-			<p class="form">
-				<%= render 'shared/login_form'%>
-			</p>
+		<p class="form">
+			<%= render 'shared/comment_form'%>
+		</p>
+
+		<% else%>
+		LOGIN
+		<p class="form">
+			<%= render 'shared/login_form'%>
+		</p>
 		<% end%>
 		</p>
 
-		<table>
-			<% @comments.each do |comment|%>
-			<tr>
-				<td> comment :: <%= comment.contents %> </td>
-			</tr>
-			<% end %>
-		</table>
+		<p class="comment_view">
+			<%= render 'shared/comment_view'%>
+		</p>
+
 	</body>
 </html>

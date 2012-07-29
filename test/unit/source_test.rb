@@ -1,9 +1,7 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class SourceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  def test1
-  end
 end

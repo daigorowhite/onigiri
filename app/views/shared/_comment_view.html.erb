@@ -1,0 +1,36 @@
+<table>
+	<% Comment.get_comment(10).each do |comment|%>
+	<tr>
+		<td> ====== </td>
+	</tr>
+	<tr>
+		<td> User </td>
+		<td> :: </td>
+		<td><%= User.where("id = #{comment.user_id}").first.user_name %> </td>
+	</tr>
+	<tr>
+		<td> Comment </td>
+		<td> :: </td>
+		<td> <%= comment.contents %> </td>
+	</tr>
+	<tr>
+		<td> date </td>
+		<td> :: </td>
+		<td> <%= comment.created_at %> </td>
+	</tr>
+	<% if comment.source_id != nil %>
+	<% source = Source.where("id = #{comment.source_id}").first%>
+	</tr>
+	<tr>
+		<td> url </td>
+		<td> :: </td>
+		<td><a href='<%= source.url%>'><%= source.url%></td>
+	</tr>
+	<tr>
+		<td> source code </td>
+		<td>  </td>
+		<td><pre style="background-color:#dfd; padding: 10px 10px 10px 10px;"><%= source.source%></pre></td>
+	</tr>
+	<% end %>
+	<% end %>
+</table>

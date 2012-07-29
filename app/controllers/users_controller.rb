@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     if params[:user][:user_password] == params[:res][:again_password]
       @tmp_user = User.new
-      @tmp_user.user_id = params[:user][:id]
+      @tmp_user.user_id = @tmp_user.id
       @tmp_user.user_name = params[:user][:user_name]
       @tmp_user.user_password = Digest::SHA1.hexdigest(params[:user][:user_password])
       if @tmp_user.save

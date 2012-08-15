@@ -40,4 +40,4 @@ gem 'jquery-rails'
 
 #original gem
 gem 'hpricot'
-gem 'nikuman' ,:git => 'git@github.com:daigorowhite/nikuman.git'
+gem 'nikuman' ,:path => lib/bundle/

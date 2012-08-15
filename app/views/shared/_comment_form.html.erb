@@ -1,13 +1,27 @@
 <%= form_tag({:action => 'add_comment'}) do %>
-
 <div class="field">
-	<%= label :req ,:comment %> :
+	<%= label :req ,:comment  %> :<br>
 	<%= text_field :req, :comment,{:size => 50} %>
 </div>
+<br>
+
+To use :: <br>
+url  <%= radio_button :req, :getFrom, 'url', {:checked => true} %>      
+source  <%= radio_button :req, :getFrom, 'source', {} %>
+<br>
+<br>
+
 <div class="field">
-	<%= label :req ,:url_include_source %> :
-	<%= text_field :req, :url,{:size => 30} %>
+	<%= label :req ,:url_include_source %> :<br>
+	<%= text_field :req, :url,{:size => 100} %>
 </div>
+<br>
+
+<div class="field">
+	<%= label :req ,:source %> :<br>
+	<%= text_area :req, :source,{:size => 20, :cols => 75} %>
+</div>
+<br>
 
 <div class="actions">
 	<%= submit_tag 'send' %>

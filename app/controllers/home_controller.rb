@@ -14,22 +14,41 @@ class HomeController < ApplicationController
       @tmp_comment.commented =  Time.now
 
       # check url and analyze
-      url = params[:req][:url]
-      unless url == nil || url == ""
-        @source = Source.new
-        @source.url = url
-        html_val = Core::CommonUtil.get_string_by_url(@source.url)
-        unless  html_val == nil
-          pre_list = Core::CommonUtil.get_pre_list(html_val)
-          unless pre_list == nil
-            @source.source = pre_list[0]
-            if @source.save
-              @source = Source.all.first
+      if params[:req][:getFrom] == "url"
+        url = params[:req][:url]
+        unless url == nil || url == ""
+          @source = Source.new
+          @source.url = url
+          html_val = Core::CommonUtil.get_string_by_url(@source.url)
+          unless  html_val == nil
+            pre_list = Core::CommonUtil.get_pre_list(html_val)
+            unless pre_list == nil
+              @source.source = pre_list[0]
+              if @source.save
+                @source = Source.all.last
               @tmp_comment.source_id = @source.id
-            else
-              @info = "fail to anylize the url. #{url}" 
-              render :action => "index.html"
+              else
+                @info = "fail to anylize the url. #{url}"
+                render :action => "index.html"
+              end
             end
+          end
+        end
+      end
+
+      # check source
+      if params[:req][:getFrom] == "source"
+        source = params[:req][:source]
+        @source = Source.new
+        @source.url = nil
+        unless  source == nil
+          @source.source = source
+          if @source.save
+            @source = Source.all.last
+          @tmp_comment.source_id = @source.id
+          else
+            @info = "fail to anylize the url. #{url}"
+            render :action => "index.html"
           end
         end
       end
